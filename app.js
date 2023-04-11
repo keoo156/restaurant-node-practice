@@ -1,7 +1,12 @@
 const express = require("express")
 const app = express()
 const mongoose = require("mongoose")
+const exphbs = require("express-handlebars")
+const Restaurant = require("./models/resList")
 
+app.engine("handlebars", exphbs({defaultLayout:"main"}))
+app.set("view engine", "handlebars")
+app.use(express.static("public"))
 if (process.env.NODE_ENV !== "production"){
     require("dotenv").config()
 }
@@ -16,7 +21,10 @@ db.once("open", ()=>{
 
 
 app.get("/",(req,res)=>{
-    res.render("index")
+    Restaurant.find()
+    .lean()
+    .then(rests => res.render("index",{rests}))
+    .catch(e=> console.log(e))
 })
 
 
