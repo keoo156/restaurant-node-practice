@@ -2,31 +2,38 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 const resSchema = new Schema({
     name:{
-        type:String,
+        type: String,
         required: true
+        
     },
     name_en:{
-        type:String,
+        type: String,
         required: true
+        
     },
     category:{
-        type:String
-    },
-    image:{
-        type:String
-    },
-    location:{
-        type:String,
+        type: String,
         required: true
     },
+    image:{
+        type: String,
+        required: true
+    },
+    location:{
+        type: String,
+        required: true
+        
+    },
     phone:{
-        type:Number
+        type: String,
+        required: true
     },
     rating:{
-        type:Number
+        type: Number,
+
     },
     description:{
-        type:String
+        type: String
     }
 })
 module.exports = mongoose.model("Restaurant", resSchema)
