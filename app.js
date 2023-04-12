@@ -4,6 +4,8 @@ const mongoose = require("mongoose")
 const exphbs = require("express-handlebars")
 const Restaurant = require("./models/resList")
 const bodyParser = require("body-parser")
+const Swal = require('sweetalert2')
+
 
 app.engine("handlebars", exphbs({defaultLayout:"main"}))
 app.set("view engine", "handlebars")
@@ -26,7 +28,10 @@ db.once("open", ()=>{
 app.get("/",(req,res)=>{
     Restaurant.find()
     .lean()
-    .then(rests => res.render("index",{rests}))
+    .then(rests =>{ 
+        res.render("index",{rests})
+    })
+    
     .catch(e=> console.log(e))
 })
 //前往新增頁面的路由 ok
@@ -58,7 +63,7 @@ app.get("/restaurants/:id", (req,res)=>{
 })
 //刪除資料的路由
 app.get("/delete/:id",(req,res)=>{
-    
+    const id = req.params.id
     return Restaurant.findById(id)
     .then(data => {
         
@@ -121,7 +126,10 @@ app.get("/search", (req,res)=>{
         console.log(e)
     })
 })
-
+//測試
+app.get("/123", (req,res)=>{
+    res.send("123")
+})
 app.listen(3000,()=>{
     console.log("listening")
 })
