@@ -75,8 +75,50 @@ app.get("/delete/:id",(req,res)=>{
 app.get("/edit/:id", (req,res)=>{
     const id = req.params.id
     return Restaurant.findById(id)
+    .lean()
     .then((data)=>{
-        res.render("edit")
+        res.render("edit",{data})
+    })
+    .catch((e)=>console.log(e))
+})
+//儲存更新資料
+app.post("/newEdited/:id",(req,res)=>{
+    const id = req.params.id
+    const name = req.body.name
+    const category = req.body.category
+    const image = req.body.image
+    const location = req.body.location
+    const phone = req.body.phone
+    const rating = req.body.rating
+    const description = req.body.description
+    return Restaurant.findById(id)
+    .then((data)=>{
+        data.name = name,
+        data.category = category,
+        data.image = image,
+        data.location = location,
+        data.phone = phone,
+        data.rating = rating,
+        data.description = description,
+        data.save()
+    })
+    .then(() => {
+        res.redirect("/")
+    })
+    .catch((e) => {
+
+    })
+})
+//搜尋餐廳
+app.get("/search", (req,res)=>{
+    const keyword = req.query.keyword
+    return Restaurant.find({"$or" :[{name:{$regex:keyword}},{category:{$regex:keyword}}]})
+    .lean()
+    .then((rests)=>{
+        res.render("index", {rests,keyword})
+    })
+    .catch((e)=>{
+        console.log(e)
     })
 })
 

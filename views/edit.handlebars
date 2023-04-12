@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form action="/newEdited/{{data._id}}" style="margin-top: 3rem; padding:0 5rem" method="POST">
+  <div class="form-group">
+    <label for="restName">餐廳名稱</label>
+    <input type="text" class="form-control" id="restName" placeholder="請輸入餐廳名稱" name="name" required="required" value="{{data.name}}">
+  </div>
+  <div class="form-group">
+    <label for="restCategory">餐廳類別</label>
+    <input type="text" class="form-control" id="restCategory" placeholder="請輸入餐聽類別，ex:美式餐廳" name="category" required="required" value="{{data.category}}">
+  </div>
+  <div class="form-group">
+    <label for="restImage">餐廳圖片</label>
+    <input type="text" class="form-control" id="restImage" placeholder="請附上餐廳圖片連結" name="image" required="required" value="{{data.image}}">
+  </div>
+  <div class="form-group">
+    <label for="restLocation">餐廳地址</label>
+    <input type="text" class="form-control" id="restLocation" placeholder="請輸入餐廳地址" name="location" required="required" value="{{data.location}}">
+  </div>
+  <div class="form-group">
+    <label for="restPhone">餐廳電話</label>
+    <input type="text" class="form-control" id="restPhone" placeholder="請輸入餐廳電話" name="phone" required="required" value="{{data.phone}}">
+  </div>
+  <div class="form-group">
+    <label for="restRating">餐廳評分</label>
+    <input type="number" class="form-control" id="restRating" placeholder="請輸入您的評分" name="rating" required="required" value="{{data.rating}}">
+  </div>
+  <div class="form-group">
+    <label for="restDescription">餐廳描述</label>
+    <textarea class="form-control" id="restDescription" rows="3" name="description" placeholder="請輸入您對餐廳的描述" required="required">{{data.description}}</textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">送出資料</button>
+</form>
+</body>
+</html>
