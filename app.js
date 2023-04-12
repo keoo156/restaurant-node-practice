@@ -119,7 +119,7 @@ app.get("/search", (req,res)=>{
     return Restaurant.find({"$or" :[{name:{$regex:keyword}},{category:{$regex:keyword}}]})
     .lean()
     .then((rests)=>{
-        res.render("index", {rests,keyword})
+        rests.length ? res.render("index", {rests,keyword}) : res.render("empty")
     })
     .catch((e)=>{
         console.log(e)
