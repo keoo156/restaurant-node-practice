@@ -3,10 +3,13 @@ const app = express()
 const mongoose = require("mongoose")
 const exphbs = require("express-handlebars")
 const Restaurant = require("./models/resList")
+const bodyParser = require("body-parser")
 
 app.engine("handlebars", exphbs({defaultLayout:"main"}))
 app.set("view engine", "handlebars")
 app.use(express.static("public"))
+app.use(bodyParser.urlencoded({extended: true}))
+
 if (process.env.NODE_ENV !== "production"){
     require("dotenv").config()
 }
@@ -19,16 +22,63 @@ db.once("open", ()=>{
     console.log("success")
 })
 
-
+//首頁路由 ok
 app.get("/",(req,res)=>{
     Restaurant.find()
     .lean()
     .then(rests => res.render("index",{rests}))
     .catch(e=> console.log(e))
 })
-
-
-
+//前往新增頁面的路由 ok
+app.get("/addNew", (req,res)=>{
+    res.render("add")
+})
+//新增資料的路由 ok
+app.post("/sendNew", (req,res)=>{
+    const name = req.body.name
+    const category = req.body.category
+    const image = req.body.image
+    const location = req.body.location
+    const phone = req.body.phone
+    const rating = req.body.rating
+    const description = req.body.description
+    return Restaurant.create({name, category, image, location, phone, rating, description})
+    .then(()=> res.redirect("/"))
+    .catch((e)=> console.log(e))
+})
+//顯示詳細頁面的路由 ok
+app.get("/restaurants/:id", (req,res)=>{
+    const id = req.params.id
+    return Restaurant.findById(id)
+    .lean()
+    .then((data)=>{
+        res.render("show", {data})
+    })
+    .catch((e)=> console.log(e))
+})
+//刪除資料的路由
+app.get("/delete/:id",(req,res)=>{
+    
+    return Restaurant.findById(id)
+    .then(data => {
+        
+        data.remove()
+    })
+    .then(() => {
+        res.redirect("/")
+    })
+    .catch((e)=> {
+        console.log(e)
+    })
+})
+//更改餐廳資料的路由
+app.get("/edit/:id", (req,res)=>{
+    const id = req.params.id
+    return Restaurant.findById(id)
+    .then((data)=>{
+        res.render("edit")
+    })
+})
 
 app.listen(3000,()=>{
     console.log("listening")

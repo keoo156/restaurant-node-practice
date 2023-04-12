@@ -8,7 +8,7 @@ const resSchema = new Schema({
     },
     name_en:{
         type: String,
-        required: true
+        
         
     },
     category:{
@@ -30,10 +30,12 @@ const resSchema = new Schema({
     },
     rating:{
         type: Number,
+        required: true
 
     },
     description:{
-        type: String
+        type: String,
+        required: true
     }
 })
 module.exports = mongoose.model("Restaurant", resSchema)
