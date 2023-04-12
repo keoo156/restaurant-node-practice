@@ -66,7 +66,6 @@ app.get("/delete/:id",(req,res)=>{
     const id = req.params.id
     return Restaurant.findById(id)
     .then(data => {
-        
         data.remove()
     })
     .then(() => {
@@ -126,10 +125,7 @@ app.get("/search", (req,res)=>{
         console.log(e)
     })
 })
-//測試
-app.get("/123", (req,res)=>{
-    res.send("123")
-})
+
 app.listen(3000,()=>{
     console.log("listening")
 })
