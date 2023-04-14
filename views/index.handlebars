@@ -12,7 +12,7 @@
 <div class="container search-bar">
   <div class="search-bar-outer">
     <div class="search-bar-inner">
-      <form action="/search" method="GET">
+      <form action="/restaurant/search" method="GET">
         <h4 class="mb-2">尋找餐廳：</h4>
         <div class="input-group">
           <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..." value="{{keyword}}" aria-describedby="search-button">
@@ -47,7 +47,7 @@
               </span>
             
             </div>
-            <a href="/restaurants/{{this._id}}" class="text-secondary">顯示詳細資料</a>
+            <a href="/restaurant/{{this._id}}" class="text-secondary">顯示詳細資料</a>
             <a href="/restaurant/edit/{{this._id}}">修改餐廳資料</a>
              <form action="/restaurant/{{this._id}}?_method=DELETE" method="post">
               <button id="submit"  >刪除餐廳</button>
