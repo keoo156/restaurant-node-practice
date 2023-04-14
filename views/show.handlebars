@@ -43,8 +43,11 @@
         {{data.description}}
       </p>
       <a href="/" style="margin-right:1rem ;">返回首頁</a>
-      <a class="deleteData" id="{{data._id}}" onclick="confirm(id)" style="margin-right:1rem ;">刪除此餐廳</a>
-      <a href="/edit/${{data._id}}" style="margin-right:1rem ;">修改餐廳資料</a>
+      {{!-- <a class="deleteData" id="{{data._id}}" style="margin-right:1rem ;">刪除此餐廳</a> --}}
+      <a href="/restaurant/edit/${{data._id}}" style="margin-right:1rem ;">修改餐廳資料</a>
+      <form action="/restaurant/{{data._id}}?_method=DELETE" method="post">
+              <button id="submit"  >刪除餐廳</button>
+        </form>
 
       <img class="rounded mx-auto d-block mb-4 w-100" src="{{data.image}}" alt="{{data.name}}" style="max-width: 600px;">
     </div>
@@ -52,7 +55,25 @@
   </div>
 </div>
 <script>
-
+    let button = document.querySelector("#submit")
+    button.addEventListener("click",(e) => {
+      e.preventDefault();
+      let form = e.target.parentElement
+          console.log(e.target.parentElement)
+          Swal.fire({
+            title: '確定要刪除資料嗎',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '是的'
+        })
+        .then((result) => {
+          if (result.value) {
+               HTMLFormElement.prototype.submit.call(form);
+            }
+        })
+    })
 </script>
 </body>
 </html>
