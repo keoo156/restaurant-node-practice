@@ -3,9 +3,9 @@
 # 簡介
 這是利用mongodb資料庫建置的餐廳列表，目前有搜尋、新增、刪除等等功能，排序功能尚不完善
 # 環境建置
-"body-parser": "^1.20.2",
-    "express": "^4.17.1",
-    "express-handlebars": "^4.0.2",
-    "method-override": "^3.0.0",
-    "mongoose": "^5.9.7",
-    "dotenv": "^16.0.3"
+* body-parser: 1.20.2
+* express: 4.17.1
+* express-handlebars: 4.0.2
+* method-override:3.0.0
+* mongoose:5.9.7
+* dotenv:16.0.3
