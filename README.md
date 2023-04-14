@@ -1,2 +1,2 @@
 **我的餐廳**
-![GITHUB][螢幕擷取畫面 2023-04-14 134534](https://user-images.githubusercontent.com/127181005/231952863-593227e4-3db0-45a9-bc66-4e4844c6e500.png)
+![image](https://github.com/keoo156/restaurant-node-practice/blob/master/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202023-04-14%20134534.png)
